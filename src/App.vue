@@ -1,18 +1,33 @@
 <template>
-  <h1>Nuestro primer componente VueJS</h1>
-  <CarOptions />
-  <CarComposition />
+  <h1>VueJS</h1>
+  <Car :power="power" :upPower="upPower" @downPower="downPower"/>
 </template>
 
 <script>
-import CarComposition from "./components/CarComposition";
-import CarOptions from "./components/CarOptions";
+import {ref} from "vue";
+import Car from "./components/Car";
 
 export default {
   components: {
-    CarComposition,
-    CarOptions,
+    Car,
   },
+  setup (){
+    let power = ref(30);
+
+    const upPower = () => {
+      power.value++;
+    }
+
+     const downPower = () => {
+      power.value--;
+    }
+
+    return {
+      power,
+      upPower,
+      downPower,
+    }
+  }
 };
 </script>
 
